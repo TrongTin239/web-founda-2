@@ -1,17 +1,16 @@
 import React from "react";
-import Box from "@mui/material/Box";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ToDoApp from "./feature/ToDoApp/pages/ToDoApp";
+import { useForm } from "react-hook-form";
 
 function App() {
-  const notify = () => toast("Wow so easy!");
-
   return (
-    <div>
-      <Box textAlign={"center"}> Task Manager</Box>
-      <button onClick={notify}>Notify!</button>
+    <>
+      <ToDoApp />
+
       <ToastContainer />
-    </div>
+    </>
   );
 }
 

@@ -8,6 +8,7 @@ import EditTasktModal from "../component/EditTasktModal";
 const title = "TASK MANAGER";
 
 export default function ToDoApp() {
+  // list task to do
   const listTask = [
     {
       taskName: "Learn Front-end",
@@ -19,7 +20,9 @@ export default function ToDoApp() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [taskList, setTaskList] = useState(listTask);
+  // state for Tasklist to render
+  const [taskList, setTaskList] = useState([...listTask]);
+  // state for find task to edit or delete
   const [foundTask, setFoundTask] = useState();
   // submit data  react-hook-form to add task list
   const onSubmit = ({ ...data }) => {
@@ -37,22 +40,22 @@ export default function ToDoApp() {
     );
     taskList[index] = data;
   };
-
+  // handle delete task
   const handldeDelete = (task) => {
     const index = taskList.findIndex((e) => e === task);
-    console.log(index);
 
     if (index >= 0) {
-      taskList.splice(index, 1);
-      console.log(taskList);
+      const taskClone = [...taskList];
+      taskClone.splice(index, 1);
+      setTaskList(taskClone);
     }
-
-    // console.log("delete");
   };
 
   return (
     <Container>
-      <Box textAlign={"center"}>{title}</Box>
+      <Box textAlign={"center"} mt={6}>
+        {title}
+      </Box>
       <ToDoForm onSubmit={onSubmit} />
       <TaskList
         taskList={taskList}

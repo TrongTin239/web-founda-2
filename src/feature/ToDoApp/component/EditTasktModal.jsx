@@ -1,6 +1,15 @@
-import { Box, MenuItem, Modal, Select } from "@mui/material";
+import {
+  Box,
+  Button,
+  ButtonGroup,
+  MenuItem,
+  Modal,
+  Select,
+  TextField,
+} from "@mui/material";
 import React, { memo, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import * as yup from "yup";
 
 // style modal
@@ -9,7 +18,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: { md: 400, sm: 250 },
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
@@ -49,18 +58,20 @@ function EditTasktModal({ onOpen, onClose, foundTask, onSubmitEdit }) {
   useEffect(() => {
     reset();
   }, [foundTask]);
+  // check edit exist
   if (!foundTask) {
     return;
   }
 
   const { taskName, taskPrority, taskStatus } = foundTask;
-
+  console.log(taskName);
   return (
     <Modal
       open={onOpen}
       onClose={onClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
+      sx={{ lg: { width: "250px" } }}
     >
       <Box sx={style}>
         {/* test form */}
@@ -70,22 +81,31 @@ function EditTasktModal({ onOpen, onClose, foundTask, onSubmitEdit }) {
             onSubmitEdit(data);
 
             onClose();
+            toast.success("Update successfully!!");
           })}
         >
           <p>Task Name</p>
-          <input
+          <TextField
             type="text"
             {...register("taskName")}
             defaultValue={taskName}
           />
           <p>Task Status</p>
-          <Select {...register("taskStatus")} defaultValue={taskStatus}>
+          <Select
+            {...register("taskStatus")}
+            defaultValue={taskStatus}
+            sx={{ width: "210px" }}
+          >
             <MenuItem value="Ready">Ready</MenuItem>
             <MenuItem value="In Process">In Process</MenuItem>
             <MenuItem value="Done">Done</MenuItem>
           </Select>
           <p>Task Prorority</p>
-          <Select {...register("taskPrority")} defaultValue={taskPrority}>
+          <Select
+            {...register("taskPrority")}
+            defaultValue={taskPrority}
+            sx={{ width: "210px" }}
+          >
             <MenuItem value="Low">Low</MenuItem>
             <MenuItem value="Medium">Medium</MenuItem>
             <MenuItem value="High">High</MenuItem>
@@ -97,8 +117,15 @@ function EditTasktModal({ onOpen, onClose, foundTask, onSubmitEdit }) {
           /> */}
 
           <br />
-          <input type="submit" />
-          <button onClick={onClose}>Cancel</button>
+          <ButtonGroup sx={{ mt: 3 }}>
+            <Button type="submit" variant="contained" sx={{ mr: 2 }}>
+              {" "}
+              Update
+            </Button>
+            <Button onClick={onClose} variant="outlined">
+              Cancel
+            </Button>
+          </ButtonGroup>
         </form>
       </Box>
     </Modal>

@@ -3,10 +3,18 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import InputField from "../../../common/InputField";
-import { Box, TextareaAutosize } from "@mui/material";
+import {
+  Box,
+  Button,
+  FormControl,
+  TextareaAutosize,
+  Typography,
+} from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
+import { ToastContainer, toast } from "react-toastify";
+
 const schema = yup
   .object({
     taskName: yup.string().required("This field not allowed to be empty"),
@@ -30,19 +38,18 @@ export default function ToDoForm({ onSubmit }) {
     },
   });
 
-  //   submit form
-  //   const onSubmit = ({ ...data }) => {
-  //     // const newTaskList = taskList;
-  //     // newTaskList.push(data);
-  //     // console.log(taskList);
-
-  //   };
-
   return (
-    <Box>
+    <Box
+      sx={{
+        ".MuiTextField-root": {
+          width: "300px",
+        },
+      }}
+    >
       <form
         onSubmit={handleSubmit((data) => {
           onSubmit(data);
+          toast.success("Add task successfully!");
           reset();
         })}
       >
@@ -54,15 +61,31 @@ export default function ToDoForm({ onSubmit }) {
           placeholder="Type here"
           name="taskName"
         />
-        <InputLabel id="demo-simple-select-label">Priority Level</InputLabel>
-        <Select {...register("taskPrority")} defaultValue={"Medium"}>
+        <Typography id="demo-simple-select-label" textAlign={"left"} my={2}>
+          Priority Level
+        </Typography>
+        <Select
+          {...register("taskPrority")}
+          defaultValue={"Medium"}
+          sx={{ width: "300px" }}
+        >
           <MenuItem value="Low">Low</MenuItem>
           <MenuItem value="Medium">Medium</MenuItem>
           <MenuItem value="High">High</MenuItem>
         </Select>
 
         <br />
-        <button type="submit"> Add</button>
+        <Button
+          variant="outlined"
+          type="submit"
+          sx={{
+            width: "100px",
+            mt: 3,
+          }}
+        >
+          {" "}
+          Add{" "}
+        </Button>
       </form>
     </Box>
   );

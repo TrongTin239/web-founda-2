@@ -11,7 +11,10 @@ export default function InputField({
 }) {
   return (
     <div>
-      <Typography> {label} </Typography>
+      <Typography textAlign={"left"} my={2}>
+        {" "}
+        {label}{" "}
+      </Typography>
       <TextField
         type="text"
         placeholder={placeholder}

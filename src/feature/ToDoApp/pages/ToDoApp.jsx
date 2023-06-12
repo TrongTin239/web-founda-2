@@ -12,10 +12,11 @@ export default function ToDoApp() {
   const listTask = [
     {
       taskName: "Learn Front-end",
-      taskPrority: "Medium",
+      taskPrority: "Normal",
       taskStatus: "In Process",
     },
   ];
+
   // hanlde Modal
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -50,7 +51,30 @@ export default function ToDoApp() {
       setTaskList(taskClone);
     }
   };
+  // handle filter
+  let [filterTags, setFilterTags] = useState([]);
 
+  const filteredDATA = taskList.filter((task) =>
+    filterTags?.length > 0
+      ? task.taskStatus.includes(filterTags) ||
+        task.taskPrority.includes(filterTags)
+      : taskList
+  );
+
+  // console.log(filteredDATA);
+  const handleFilter = (event) => {
+    let newFilter = [...filterTags];
+    newFilter = event.target?.value;
+    console.log(typeof newFilter);
+    setFilterTags(newFilter);
+  };
+  // handle clear filter
+
+  const handleClearFilter = () => {
+    setFilterTags([]);
+  };
+
+  useEffect(() => {}, [taskList]);
   return (
     <Container>
       <Box textAlign={"center"} mt={6}>
@@ -58,12 +82,15 @@ export default function ToDoApp() {
       </Box>
       <ToDoForm onSubmit={onSubmit} />
       <TaskList
-        taskList={taskList}
+        taskList={filteredDATA}
         open={open}
         handleClose={handleClose}
         onOpen={handleOpen}
         findTask={findTask}
         onDelete={handldeDelete}
+        onFilter={handleFilter}
+        onHandeClear={handleClearFilter}
+        filterTags={filterTags}
       />
       <EditTasktModal
         foundTask={foundTask}

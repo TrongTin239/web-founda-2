@@ -64,7 +64,7 @@ function EditTasktModal({ onOpen, onClose, foundTask, onSubmitEdit }) {
   }
 
   const { taskName, taskPrority, taskStatus } = foundTask;
-  console.log(taskName);
+
   return (
     <Modal
       open={onOpen}
@@ -107,7 +107,7 @@ function EditTasktModal({ onOpen, onClose, foundTask, onSubmitEdit }) {
             sx={{ width: "210px" }}
           >
             <MenuItem value="Low">Low</MenuItem>
-            <MenuItem value="Medium">Medium</MenuItem>
+            <MenuItem value="Normal">Normal</MenuItem>
             <MenuItem value="High">High</MenuItem>
           </Select>
           {/* <input
@@ -132,47 +132,3 @@ function EditTasktModal({ onOpen, onClose, foundTask, onSubmitEdit }) {
   );
 }
 export default memo(EditTasktModal);
-
-// save here
-{
-  /* <Controller
-            control={control}
-            name="test"
-            register={{ ...register("taskName") }}
-            render={({
-              field: { onChange, onBlur, value = foundTask, ref },
-            }) => {
-              // sending integer instead of string.
-              return <TextField onChange={onChange} value={value?.taskName} />;
-            }}
-          />
-          <Controller
-            control={control}
-            name="test"
-            register={{ ...register("taskPrority") }}
-            render={({
-              field: { onChange, onBlur, value = foundTask, ref },
-            }) => {
-              // sending integer instead of string.
-              return (
-                <TextField onChange={onChange} value={value?.taskPrority} />
-              );
-            }}
-          />
-          <Controller
-            control={control}
-            name="test"
-            register={{ ...register("description") }}
-            render={({
-              field: { onChange, onBlur, value = foundTask, ref },
-            }) => {
-              // sending integer instead of string.
-              return (
-                <TextareaAutosize
-                  onChange={onChange}
-                  value={value?.description}
-                />
-              );
-            }}
-          /> */
-}

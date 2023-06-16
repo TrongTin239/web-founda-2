@@ -15,6 +15,11 @@ export default function ToDoApp() {
       taskPrority: "Normal",
       taskStatus: "In Process",
     },
+    {
+      taskName: "Learn Back-end",
+      taskPrority: "High",
+      taskStatus: "Ready",
+    },
   ];
 
   // hanlde Modal
@@ -65,7 +70,7 @@ export default function ToDoApp() {
   const handleFilter = (event) => {
     let newFilter = [...filterTags];
     newFilter = event.target?.value;
-    console.log(typeof newFilter);
+
     setFilterTags(newFilter);
   };
   // handle clear filter

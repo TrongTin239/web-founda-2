@@ -1,6 +1,5 @@
 import { TextField, Typography } from "@mui/material";
-import React, { useState } from "react";
-import { useForm, Controller, useController } from "react-hook-form";
+import React from "react";
 export default function InputField({
   errors,
   register,
@@ -23,7 +22,9 @@ export default function InputField({
         value={value}
         disabled={disable}
       />
-      <Typography sx={{ color: "red" }}>{errors.taskName?.message}</Typography>
+      <Typography className="errorMsg" sx={{ color: "red" }}>
+        {errors.taskName?.message}
+      </Typography>
     </div>
   );
 }

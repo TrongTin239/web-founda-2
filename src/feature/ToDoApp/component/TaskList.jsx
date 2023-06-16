@@ -1,7 +1,6 @@
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import {
-  Box,
   FormControl,
   FormLabel,
   MenuItem,
@@ -22,7 +21,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Tooltip from "@mui/material/Tooltip";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { toast } from "react-toastify";
 
 // Title
@@ -52,8 +51,8 @@ function TaskList({
   const handleClose = () => {
     setOpen(false);
   };
-  useEffect(() => {}, []);
-  // Render list task
+
+  // Render list task and search task
   const renderTaskList = () => {
     return taskList
       ?.filter((task) => {
@@ -138,20 +137,26 @@ function TaskList({
         onChange={(e) => {
           setSearch(e.target.value.toString().toLowerCase());
         }}
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
       >
         <TextField
           fullWidth
           type="text"
           autoComplete={"off"}
+          name="searchTask"
           placeholder="Search task by name, status or prority"
         />
       </form>
       {/* Filter form */}
       <Stack
-        flexDirection={"row"}
         justifyContent={"flex-end"}
-        alignItems={"center"}
         mt={3}
+        sx={{
+          flexDirection: { sm: "row" },
+          alignItems: { sm: "flex-start", md: "center" },
+        }}
       >
         <Typography mr={2}>Filter by:</Typography>
         <Stack flexDirection={"row"} alignItems={"center"}>
@@ -223,12 +228,15 @@ function TaskList({
         </DialogTitle>
 
         <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
+          <Button id="Disagree" onClick={handleClose}>
+            Disagree
+          </Button>
           <Button
+            id="Agree"
             onClick={() => {
               handleClose();
               onDelete(taskDelete);
-              toast.success("Delete successfully!");
+              toast.success("Delete successfully!", { toastId: "deleteMsg" });
             }}
             autoFocus
           >

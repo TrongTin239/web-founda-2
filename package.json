@@ -9,7 +9,6 @@
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.13.3",
     "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "color-convert": "^2.0.1",
     "react": "^18.2.0",
@@ -26,13 +25,14 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "cypress open",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "plugin:cypress/recommended"
     ]
   },
   "browserslist": {
@@ -48,6 +48,8 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-transform-private-property-in-object": "^7.22.3"
+    "@babel/plugin-transform-private-property-in-object": "^7.22.3",
+    "@testing-library/react": "^14.0.0",
+    "cypress": "^12.14.0"
   }
 }

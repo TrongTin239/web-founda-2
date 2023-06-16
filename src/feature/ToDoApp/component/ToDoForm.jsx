@@ -44,7 +44,7 @@ export default function ToDoForm({ onSubmit }) {
       <form
         onSubmit={handleSubmit((data) => {
           onSubmit(data);
-          toast.success("Add task successfully!");
+          toast.success("Add task successfully!", { toastId: "successMsg" });
           setStatus("Normal");
           reset();
         })}
@@ -58,7 +58,7 @@ export default function ToDoForm({ onSubmit }) {
           name="taskName"
         />
         <Typography id="demo-simple-select-label" textAlign={"left"} my={2}>
-          Priority Level
+          Prority Level
         </Typography>
         <Select
           {...register("taskPrority")}

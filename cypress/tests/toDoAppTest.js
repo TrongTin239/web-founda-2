@@ -1,6 +1,5 @@
 describe("unit test to do app", () => {
   it("test add task with blank task name", () => {
-    // eslint-disable-next-line no-undef
     cy.visit("/");
 
     cy.get("button[type='submit']").click();

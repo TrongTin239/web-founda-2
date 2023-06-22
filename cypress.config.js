@@ -8,4 +8,11 @@ module.exports = defineConfig({
     specPattern: "./cypress/tests/**.*",
     baseUrl: "http://localhost:3000/",
   },
+
+  component: {
+    devServer: {
+      framework: "create-react-app",
+      bundler: "webpack",
+    },
+  },
 });

@@ -49,18 +49,22 @@ export default function ToDoForm({ onSubmit }) {
           reset();
         })}
       >
+        {/* <Typography textAlign={"left"} my={2}>
+          Task Name
+        </Typography> */}
         <InputField
           errors={errors}
           control={control}
           register={{ ...register("taskName") }}
-          label="Task Name"
           placeholder="Type here"
           name="taskName"
+          label={"Task Name"}
         />
         <Typography id="demo-simple-select-label" textAlign={"left"} my={2}>
           Prority Level
         </Typography>
         <Select
+          id="task-prority__Form"
           {...register("taskPrority")}
           value={status}
           sx={{ width: "300px" }}

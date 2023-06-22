@@ -193,6 +193,7 @@ function TaskList({
           </FormControl>
           <Typography
             ml={2}
+            id="clear-filter"
             onClick={() => {
               onHandeClear();
               setTaskPrority("");

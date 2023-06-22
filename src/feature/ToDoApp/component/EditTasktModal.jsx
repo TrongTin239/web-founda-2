@@ -32,7 +32,7 @@ function EditTasktModal({ onOpen, onClose, foundTask, onSubmitEdit }) {
   const {
     register,
     handleSubmit,
-    // reset,
+    reset,
     // formState: { touched },
   } = useForm({
     defaultValues: {
@@ -58,18 +58,18 @@ function EditTasktModal({ onOpen, onClose, foundTask, onSubmitEdit }) {
       sx={{ lg: { width: "250px" } }}
     >
       <Box sx={style}>
-        {/* test form */}
-
         <form
           onSubmit={handleSubmit((data) => {
             onSubmitEdit(data);
-
+            reset();
             onClose();
-            toast.success("Update successfully!!", { toastId: "updateTak" });
+            // add toastid for test cypress
+            toast.success("Update successfully!!", { toastId: "updateTask" });
           })}
         >
           <p>Task Name</p>
           <TextField
+            id="input-field__Modal"
             type="text"
             {...register("taskName")}
             defaultValue={taskName}
@@ -89,6 +89,7 @@ function EditTasktModal({ onOpen, onClose, foundTask, onSubmitEdit }) {
             {...register("taskPrority")}
             defaultValue={taskPrority}
             sx={{ width: "210px" }}
+            id="task-prority__Modal"
           >
             <MenuItem value="Low">Low</MenuItem>
             <MenuItem value="Normal">Normal</MenuItem>
